@@ -83,15 +83,29 @@ var SingleSignOn = /** @class */ (function () {
     };
     SingleSignOn.prototype.deleteUserInfo = function (token) {
         return __awaiter(this, void 0, void 0, function () {
-            var kvd;
+            var kvd, e_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         kvd = this.newKvd();
-                        return [4 /*yield*/, kvd.delete(token)];
+                        _a.label = 1;
                     case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        // Delete key-value pair on KVD server
+                        return [4 /*yield*/, kvd.delete(token)];
+                    case 2:
+                        // Delete key-value pair on KVD server
                         _a.sent();
+                        // Close off KVD connection
+                        kvd.destroy();
                         return [2 /*return*/];
+                    case 3:
+                        e_2 = _a.sent();
+                        // Close off KVD connection
+                        kvd.destroy();
+                        // Rethrow
+                        throw e_2;
+                    case 4: return [2 /*return*/];
                 }
             });
         });

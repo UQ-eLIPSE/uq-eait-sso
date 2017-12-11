@@ -52,7 +52,23 @@ export class SingleSignOn {
 
     public async deleteUserInfo(token: string) {
         const kvd = this.newKvd();
-        await kvd.delete(token);
+
+        try {
+            // Delete key-value pair on KVD server
+            await kvd.delete(token);
+
+            // Close off KVD connection
+            kvd.destroy();
+
+            return;
+
+        } catch (e) {
+            // Close off KVD connection
+            kvd.destroy();
+
+            // Rethrow
+            throw e;
+        }
     }
 
     public generateToken() {
