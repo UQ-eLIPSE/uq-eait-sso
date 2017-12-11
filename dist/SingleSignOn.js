@@ -57,18 +57,14 @@ var SingleSignOn = /** @class */ (function () {
                         kvd = this.newKvd();
                         _a.label = 1;
                     case 1:
-                        _a.trys.push([1, 3, , 4]);
+                        _a.trys.push([1, 3, 4, 5]);
                         return [4 /*yield*/, kvd.request(token, Buffer.from(this.host, "utf8"))];
                     case 2:
                         payload = _a.sent();
                         data = JSON.parse(payload.toString("utf8"));
-                        // Close off KVD connection
-                        kvd.destroy();
                         return [2 /*return*/, data];
                     case 3:
                         e_1 = _a.sent();
-                        // Close off KVD connection
-                        kvd.destroy();
                         // If error is "Key invalid" then there is no info available at
                         // given token
                         if (e_1 && e_1.message === "Key invalid") {
@@ -76,7 +72,11 @@ var SingleSignOn = /** @class */ (function () {
                         }
                         // Continue throwing otherwise
                         throw e_1;
-                    case 4: return [2 /*return*/];
+                    case 4:
+                        // Close off KVD connection
+                        kvd.destroy();
+                        return [7 /*endfinally*/];
+                    case 5: return [2 /*return*/];
                 }
             });
         });
@@ -90,22 +90,22 @@ var SingleSignOn = /** @class */ (function () {
                         kvd = this.newKvd();
                         _a.label = 1;
                     case 1:
-                        _a.trys.push([1, 3, , 4]);
+                        _a.trys.push([1, 3, 4, 5]);
                         // Delete key-value pair on KVD server
                         return [4 /*yield*/, kvd.delete(token)];
                     case 2:
                         // Delete key-value pair on KVD server
                         _a.sent();
-                        // Close off KVD connection
-                        kvd.destroy();
                         return [2 /*return*/];
                     case 3:
                         e_2 = _a.sent();
-                        // Close off KVD connection
-                        kvd.destroy();
                         // Rethrow
                         throw e_2;
-                    case 4: return [2 /*return*/];
+                    case 4:
+                        // Close off KVD connection
+                        kvd.destroy();
+                        return [7 /*endfinally*/];
+                    case 5: return [2 /*return*/];
                 }
             });
         });

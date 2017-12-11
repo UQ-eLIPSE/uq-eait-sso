@@ -30,15 +30,9 @@ export class SingleSignOn {
             // Decode as JSON
             const data: UserInfoPayload = JSON.parse(payload.toString("utf8"));
 
-            // Close off KVD connection
-            kvd.destroy();
-
             return data;
 
         } catch (e) {
-            // Close off KVD connection
-            kvd.destroy();
-
             // If error is "Key invalid" then there is no info available at
             // given token
             if (e && e.message === "Key invalid") {
@@ -47,6 +41,10 @@ export class SingleSignOn {
 
             // Continue throwing otherwise
             throw e;
+
+        } finally {
+            // Close off KVD connection
+            kvd.destroy();
         }
     }
 
@@ -57,17 +55,15 @@ export class SingleSignOn {
             // Delete key-value pair on KVD server
             await kvd.delete(token);
 
-            // Close off KVD connection
-            kvd.destroy();
-
             return;
 
         } catch (e) {
-            // Close off KVD connection
-            kvd.destroy();
-
             // Rethrow
             throw e;
+
+        } finally {
+            // Close off KVD connection
+            kvd.destroy();
         }
     }
 
