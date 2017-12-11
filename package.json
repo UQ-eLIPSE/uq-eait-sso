@@ -1,0 +1,24 @@
+{
+  "name": "uq-eait-sso",
+  "version": "0.0.1",
+  "description": "Support library for interacting with the UQ single sign on system, intended for *.uqcloud.net servers",
+  "main": "./dist/index.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">=6.9.0"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "8.0.57",
+    "typescript": "2.6.2"
+  },
+  "dependencies": {
+    "uq-eait-kvd": "github:UQ-eLIPSE/uq-eait-kvd#v0.0.2"
+  }
+}
