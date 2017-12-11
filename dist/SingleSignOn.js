@@ -45,13 +45,16 @@ var SingleSignOn = /** @class */ (function () {
         this.kvdAddress = kvdAddress;
         this.kvdPort = kvdPort;
     }
+    SingleSignOn.prototype.newKvd = function () {
+        return new uq_eait_kvd_1.KVD(this.kvdAddress, this.kvdPort);
+    };
     SingleSignOn.prototype.getUserInfoPayload = function (token) {
         return __awaiter(this, void 0, void 0, function () {
             var kvd, payload, data, e_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        kvd = new uq_eait_kvd_1.KVD(this.kvdAddress, this.kvdPort);
+                        kvd = this.newKvd();
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
@@ -74,6 +77,21 @@ var SingleSignOn = /** @class */ (function () {
                         // Continue throwing otherwise
                         throw e_1;
                     case 4: return [2 /*return*/];
+                }
+            });
+        });
+    };
+    SingleSignOn.prototype.deleteUserInfo = function (token) {
+        return __awaiter(this, void 0, void 0, function () {
+            var kvd;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        kvd = this.newKvd();
+                        return [4 /*yield*/, kvd.delete(token)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
             });
         });

@@ -17,4 +17,10 @@ export interface UserInfoPayload {
     lastname?: string;
     /** A timestamp for the creation of the user session */
     created?: string;
+    /** Organisational unit */
+    ou?: string;
+    /** User type/role */
+    type?: string;
+    /** Job title */
+    title?: string;
 }
