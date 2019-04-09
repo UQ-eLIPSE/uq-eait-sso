@@ -1,6 +1,6 @@
 {
   "name": "@uq-elipse/uq-eait-sso",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Support library for interacting with the UQ single sign on system, intended for *.uqcloud.net servers",
   "main": "./dist/index.js",
   "types": "./types/index.d.ts",
