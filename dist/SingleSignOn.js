@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var crypto = require("crypto");
-var uq_eait_kvd_1 = require("uq-eait-kvd");
+var uq_eait_kvd_1 = require("@uq-elipse/uq-eait-kvd");
 var SingleSignOn = /** @class */ (function () {
     function SingleSignOn(host, ssoUrl, kvdAddress, kvdPort) {
         if (ssoUrl === void 0) { ssoUrl = "https://api.uqcloud.net"; }

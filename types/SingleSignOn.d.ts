@@ -1,4 +1,4 @@
-import { KVD } from "uq-eait-kvd";
+import { KVD } from "@uq-elipse/uq-eait-kvd";
 import { UserInfoPayload } from "./UserInfoPayload";
 export declare class SingleSignOn {
     readonly host: string;

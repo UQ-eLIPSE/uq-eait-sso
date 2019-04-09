@@ -1,5 +1,5 @@
 {
-  "name": "uq-eait-sso",
+  "name": "@uq-elipse/uq-eait-sso",
   "version": "0.0.4",
   "description": "Support library for interacting with the UQ single sign on system, intended for *.uqcloud.net servers",
   "main": "./dist/index.js",
@@ -19,6 +19,6 @@
     "typescript": "2.6.2"
   },
   "dependencies": {
-    "uq-eait-kvd": "github:UQ-eLIPSE/uq-eait-kvd#v0.0.2"
+    "@uq-elipse/uq-eait-kvd": "0.0.3"
   }
 }
