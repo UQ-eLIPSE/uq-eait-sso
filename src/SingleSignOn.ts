@@ -1,7 +1,7 @@
-import * as crypto from "crypto";
-import { KVD } from "@uq-elipse/uq-eait-kvd";
+import * as crypto from 'crypto';
+import { KVD } from '@uq-elipse/uq-eait-kvd';
 
-import { UserInfoPayload } from "./UserInfoPayload";
+import { UserInfoPayload } from './UserInfoPayload';
 
 export class SingleSignOn {
   public readonly host: string;
@@ -9,12 +9,7 @@ export class SingleSignOn {
   public readonly kvdAddress: string | undefined;
   public readonly kvdPort: number | undefined;
 
-  constructor(
-    host: string,
-    ssoUrl: string = "https://api.uqcloud.net",
-    kvdAddress?: string,
-    kvdPort?: number
-  ) {
+  constructor(host: string, ssoUrl: string = 'https://api.uqcloud.net', kvdAddress?: string, kvdPort?: number) {
     this.host = host;
     this.ssoUrl = ssoUrl;
     this.kvdAddress = kvdAddress;
@@ -30,16 +25,16 @@ export class SingleSignOn {
 
     try {
       // Fetch from KVD
-      const payload = await kvd.request(token, Buffer.from(this.host, "utf8"));
+      const payload = await kvd.request(token, Buffer.from(this.host, 'utf8'));
 
       // Decode as JSON
-      const data: UserInfoPayload = JSON.parse(payload.toString("utf8"));
+      const data: UserInfoPayload = JSON.parse(payload.toString('utf8'));
 
       return data;
-    } catch (e) {
+    } catch (e: any) {
       // If error is "Key invalid" then there is no info available at
       // given token
-      if (e && e.message === "Key invalid") {
+      if (e && e.message === 'Key invalid') {
         return undefined;
       }
 
@@ -73,10 +68,10 @@ export class SingleSignOn {
     const bytes = crypto.randomBytes(24);
 
     // Encode as base64
-    const b64 = bytes.toString("base64");
+    const b64 = bytes.toString('base64');
 
     // Replace '/' with '_', '+' with '-'.
-    const token = b64.replace(/\//g, "_").replace(/\+/g, "-");
+    const token = b64.replace(/\//g, '_').replace(/\+/g, '-');
 
     return token;
   }

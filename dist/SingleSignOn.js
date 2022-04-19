@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -14,8 +15,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -35,11 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SingleSignOn = void 0;
 var crypto = require("crypto");
 var uq_eait_kvd_1 = require("@uq-elipse/uq-eait-kvd");
 var SingleSignOn = /** @class */ (function () {
     function SingleSignOn(host, ssoUrl, kvdAddress, kvdPort) {
-        if (ssoUrl === void 0) { ssoUrl = "https://api.uqcloud.net"; }
+        if (ssoUrl === void 0) { ssoUrl = 'https://api.uqcloud.net'; }
         this.host = host;
         this.ssoUrl = ssoUrl;
         this.kvdAddress = kvdAddress;
@@ -58,16 +60,16 @@ var SingleSignOn = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, 4, 5]);
-                        return [4 /*yield*/, kvd.request(token, Buffer.from(this.host, "utf8"))];
+                        return [4 /*yield*/, kvd.request(token, Buffer.from(this.host, 'utf8'))];
                     case 2:
                         payload = _a.sent();
-                        data = JSON.parse(payload.toString("utf8"));
+                        data = JSON.parse(payload.toString('utf8'));
                         return [2 /*return*/, data];
                     case 3:
                         e_1 = _a.sent();
                         // If error is "Key invalid" then there is no info available at
                         // given token
-                        if (e_1 && e_1.message === "Key invalid") {
+                        if (e_1 && e_1.message === 'Key invalid') {
                             return [2 /*return*/, undefined];
                         }
                         // Continue throwing otherwise
@@ -114,13 +116,13 @@ var SingleSignOn = /** @class */ (function () {
         // Generate 24 random bytes
         var bytes = crypto.randomBytes(24);
         // Encode as base64
-        var b64 = bytes.toString("base64");
+        var b64 = bytes.toString('base64');
         // Replace '/' with '_', '+' with '-'.
-        var token = b64.replace(/\//g, "_").replace(/\+/g, "-");
+        var token = b64.replace(/\//g, '_').replace(/\+/g, '-');
         return token;
     };
     SingleSignOn.prototype.generateRedirectUrl = function (returnUrl) {
-        return this.ssoUrl + "/login/" + returnUrl;
+        return "".concat(this.ssoUrl, "/login/").concat(returnUrl);
     };
     return SingleSignOn;
 }());

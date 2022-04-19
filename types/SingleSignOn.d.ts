@@ -1,5 +1,5 @@
-import { KVD } from "@uq-elipse/uq-eait-kvd";
-import { UserInfoPayload } from "./UserInfoPayload";
+import { KVD } from '@uq-elipse/uq-eait-kvd';
+import { UserInfoPayload } from './UserInfoPayload';
 export declare class SingleSignOn {
     readonly host: string;
     readonly ssoUrl: string;
